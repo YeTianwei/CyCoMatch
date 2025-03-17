@@ -4,6 +4,8 @@ Matlab implementation for AAAI'25 paper "Multi-Shape Matching with Cycle Consist
 
 This paper focuses on multi-shape matching with a more concise cycle consistency formulation. By modeling shapes as directed graphs, we derived cycle consistency basis as constraints. The method employs a two-stage optimization: optimizing pairwise correspondence accuracy via landmarks and refining consistency through cycle consistency basis.
 
+![teaser](./figs/teaser.jpg "teaser")
+
 If you find this project useful, please cite:
 
 ```
