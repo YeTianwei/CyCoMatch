@@ -32,6 +32,7 @@ for i = 1:numShapes
     for j = 1:numShapes
         T0{i,j} = knnsearch(gpuArray(shapes{j}.SHOT), gpuArray(shapes{i}.SHOT)); 
         T0{i,j} = gather(T0{i,j});
+        % T0{i,j} = knnsearch(shapes{j}.SHOT, shapes{i}.SHOT); %cpu version
         if i == j,T0{i,j} = []; end
     end
 end

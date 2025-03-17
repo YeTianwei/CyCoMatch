@@ -47,7 +47,7 @@ function  [T0, dim, C1] = LMD_Filter(shapes, Dist, T0, threshold)
             spec1_sub = shapes{i}.evecs(non_landmarks, 1:dim(i, j));
             spec2_sub = shapes{j}.evecs(non_landmarks_corr, 1:dim(i, j));
             
-            T_temp = knnsearch(gpuArray(spec2_sub * C_fmap'), gpuArray(spec1_sub)); % gpu version
+            T_temp = knnsearch(gpuArray(spec2_sub * C_fmap'), gpuArray(spec1_sub));
             T_temp = gather(T_temp);
 
             % T_temp = knnsearch(spec2_sub * C_fmap', spec1_sub); % cpu version
