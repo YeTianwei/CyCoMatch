@@ -9,10 +9,13 @@ This paper focuses on multi-shape matching with a more concise cycle consistency
 If you find this project useful, please cite:
 
 ```
-@inproceedings{Xia2025Multi,
+@inproceedings{xia2025multi,
   title={Multi-Shape Matching with Cycle Consistency Basis via Functional Maps},
-  author={Xia, Yifan and Ye, Tianwei and Zhou, Huabing and Wang, Zhongyuann and Ma, Jiayi},
+  author={Xia, Yifan and Ye, Tianwei and Zhou, Huabing and Wang, Zhongyuan and Ma, Jiayi},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={39},
+  number={8},
+  pages={8575--8583},
   year={2025}
 }
 ```
