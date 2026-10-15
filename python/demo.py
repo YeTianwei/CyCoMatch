@@ -34,7 +34,7 @@ def main():
     ap.add_argument("--num-eigs", type=int, default=500)
     ap.add_argument("--geodesic", choices=["heat", "dijkstra"], default="heat")
     ap.add_argument("--matlab-compat", action="store_true",
-                    help="reproduce the exact distortion indexing of LMD_Filter.m")
+                    help="reproduce the old (pre-fix) distortion indexing of LMD_Filter.m")
     ap.add_argument("--plot", default=None, help="save a colour-transfer figure to this path")
     args = ap.parse_args()
 

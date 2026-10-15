@@ -30,7 +30,7 @@ def _distortion(Di, Dj, T, area, matlab_compat, chunk=256):
         cols = np.arange(s, min(s + chunk, n))
         ds = Di[:n, cols].astype(np.float64)
         if matlab_compat:
-            # LMD_Filter.m indexes the target distances with the *source*
+            # The original LMD_Filter.m indexed the target distances with the *source*
             # vertex ids: Dist{j}(idx_source, T(k)).
             dt = Dj[:n][:, T[cols]].astype(np.float64)
         else:

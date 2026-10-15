@@ -34,13 +34,13 @@ On the first run, the Laplace–Beltrami basis and the geodesic matrices are cac
   fast marching. You can use `--geodesic dijkstra` for a faster, rougher approximation.
 - **SHOT** is reimplemented from the PCL algorithm, so the descriptors (and
   therefore the initial maps `T0`) are close to `calc_shot.mex` but not bit-identical.
-- **Landmark distortion.** `LMD_Filter.m` reads the target distances as
+- **Landmark distortion.** Both versions use the paper's form `d_j(T(m), T(k))`.
+  Earlier versions of `LMD_Filter.m` read the target distances as
   `Dist{j}(idx_source, T(k))`, which indexes shape *j* with vertex ids from
-  shape *i*. On FAUST every shape has the same vertex order, so this
-  indexing quietly uses the ground-truth correspondence. By default the port uses the
-  paper's form `d_j(T(m), T(k))`. Pass `--matlab-compat` (or
-  `matlab_compat=True`) to reproduce the MATLAB behaviour exactly. On the
-  bundled demo, both settings reach the same accuracy (see below).
+  shape *i*. On FAUST every shape has the same vertex order, so that indexing
+  quietly used the ground-truth correspondence. Pass `--matlab-compat` (or
+  `matlab_compat=True`) to reproduce the old behaviour. On the bundled demo,
+  both settings reach the same accuracy (see below).
 - `fast_pMap_NNinterp` only fills `NaN` entries. A nearest-neighbour search never
   produces any, so the port omits it.
 - In the cycle-consistency ADMM, MATLAB overwrites `Z2{i,j}` for every cycle that
@@ -58,7 +58,7 @@ normalised by √area; the ground truth is the identity map.
 | --- | --- |
 | SHOT initialisation `T0` | 0.1086 |
 | Multi-CCB (default, paper distortion) | 0.0033 |
-| Multi-CCB (`--matlab-compat`) | 0.0034 |
+| Multi-CCB (`--matlab-compat`, old MATLAB indexing) | 0.0034 |
 
 A full run takes about 25–30 minutes on a 4-core CPU without a GPU. Most of the
 time goes to nearest-neighbour searches in up to 500 dimensions and to the 500×500
