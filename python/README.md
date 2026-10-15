@@ -39,7 +39,8 @@ On the first run, the Laplace–Beltrami basis and the geodesic matrices are cac
   shape *i*. On FAUST every shape has the same vertex order, so this
   indexing quietly uses the ground-truth correspondence. By default the port uses the
   paper's form `d_j(T(m), T(k))`. Pass `--matlab-compat` (or
-  `matlab_compat=True`) to reproduce the MATLAB behaviour exactly.
+  `matlab_compat=True`) to reproduce the MATLAB behaviour exactly. On the
+  bundled demo, both settings reach the same accuracy (see below).
 - `fast_pMap_NNinterp` only fills `NaN` entries. A nearest-neighbour search never
   produces any, so the port omits it.
 - In the cycle-consistency ADMM, MATLAB overwrites `Z2{i,j}` for every cycle that
@@ -47,3 +48,19 @@ On the first run, the Laplace–Beltrami basis and the geodesic matrices are cac
   the same result with fewer 500×500 products.
 - Cycle sub-sampling uses NumPy's RNG (`seed` argument) instead of MATLAB's `rand`.
   With 6 shapes, every candidate cycle is kept, so this has no effect.
+
+## Results on the bundled data
+
+Six FAUST shapes, 30 ordered pairs. The table gives the mean geodesic error
+normalised by √area; the ground truth is the identity map.
+
+| Map | Mean error |
+| --- | --- |
+| SHOT initialisation `T0` | 0.1086 |
+| Multi-CCB (default, paper distortion) | 0.0033 |
+| Multi-CCB (`--matlab-compat`) | 0.0034 |
+
+A full run takes about 25–30 minutes on a 4-core CPU without a GPU. Most of the
+time goes to nearest-neighbour searches in up to 500 dimensions and to the 500×500
+products in the ADMM step. The first run also spends about 2 minutes caching the
+eigenbasis and geodesics.
