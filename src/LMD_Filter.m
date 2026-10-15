@@ -16,7 +16,8 @@ function  [T0, dim, C1] = LMD_Filter(shapes, Dist, T0, threshold)
             dist_source_matrix = Dist{i}(good_vert, good_vert);
             
             mesh_areas = full(diag(shapes{j}.A));
-            dist_target_matrix = Dist{j}(:, T0{i, j}(good_vert));
+            % target distances d_j(T(m), T(k)) between the mapped vertices
+            dist_target_matrix = Dist{j}(T0{i, j}(good_vert), T0{i, j}(good_vert));
             
             R_max = max(max(Dist{j}));
             

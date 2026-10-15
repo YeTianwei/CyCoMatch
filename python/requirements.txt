@@ -1,0 +1,6 @@
+numpy
+scipy
+plyfile
+potpourri3d
+matplotlib  # optional, for --plot
+# torch       # optional, GPU nearest-neighbour search
